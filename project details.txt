@@ -1,0 +1,8 @@
+GS_New1 => 
+app1 - python api (django ORM)
+enroll - static files, works about form and model
+
+GS_New2 => 
+enroll - works about modelform
+
+
