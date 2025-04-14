@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SCC</title>
+    {% block head %} {% endblock head %}
+    <link rel="stylesheet" href="{% static 'bmqa1/css/bootstrap.css' %}"/>
+    {% block css_js %} {% endblock css_js %}
+</head>
+<body>
+<div class="container mt-5">
+    {% block headline %}
+    <h1 class="text-center alert alert-danger">Registration</h1>
+    {% endblock headline %}
+
+    {% block content %}
+    <div class="alert-warning" style="">
+        <h3>Congrats, registration completed.</h3>
+        <a href="./bmqa1/home">Home</a>
+    </div>
+    {% endblock content %}
+</div>
+<script src="{% static 'bmqa1/js/jquery.js' %}"></script>
+<script src="{% static 'bmqa1/js/popper.js' %}"></script>
+<script src="{% static 'bmqa1/js/bootstrap.js' %}"></script>
+{% block script %} {% endblock script %}
+
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>
