@@ -1,11 +1,12 @@
 from django.db import models
 
 # Create your models here.
-class Student(models.Model):
-    stuname=models.CharField(max_length=70)
-    stuemail=models.EmailField(max_length=70)
-    stupass=models.CharField(max_length=70)
+class User(models.Model):
+    student_name = models.CharField(max_length=100, default='')
+    teacher_name = models.CharField(max_length=100, default='')
+    email = models.EmailField(max_length=100, default='')
+    password = models.CharField(max_length=100, default='')
 
     def __str__(self):
-        return str(self.stuname)
+        return str(self.email)
 

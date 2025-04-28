@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Student
+from .models import User
 # Register your models here.
 
-class StudentAdmin(admin.ModelAdmin):
-    list_display = ['stuname', 'stuemail', 'stupass']
+class UserAdmin(admin.ModelAdmin):
+    list_display = ['id', 'student_name', 'teacher_name', 'email', 'password']
 
-admin.site.register(Student, StudentAdmin)
+admin.site.register(User, UserAdmin)

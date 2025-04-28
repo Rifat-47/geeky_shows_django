@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard</title>
+    {% block head %} {% endblock head %}
+    <link rel="stylesheet" href="{% static 'bmqa1/css/bootstrap.css' %}"/>
+    {% block css_js %} {% endblock css_js %}
+</head>
+<body>
+<div class="container mt-5">
+    {% block headline %}
+    <h1 class="text-center alert alert-danger">Online Store</h1>
+    {% endblock headline %}
+
+    {% block content %}
+    <div class="container alert-warning" style="">
+        <div class="row">
+            <div class="col-3 border">
+                <form id="filterForm" action="{% url 'dashboard' %}">
+                    {% for category in categories %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{category.name}}" id="{{category.name}}"
+                            name="category" {% if category.name in selected_categories %} checked {% endif %}>
+                        <label class="form-check-label" for="{{category.name}}">
+                            {{category.name}}
+                        </label>
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary mt-3" id="filterButton">Filter</button>
+                    <button type="button" onclick="clearFilters()" class="btn btn-secondary mt-3">Clear Filter</button>
+                </form>
+            </div>
+            <div id="productContainer" class="col-9 border">
+                {% for product in products %}
+                {% if forloop.first or forloop.counter0|divisibleby:2 %}
+                <div class="row justify-content-around mb-4">
+                    {% endif %}
+
+                    <div class="card col-5" style="width: 18rem;" data-category="{{ product.category }}">
+                        {% with product.images.first as img %}
+                        {% if img %}
+                        <img style="height: 150px; object-fit: cover;" src="{{ img.image.url }}"/>
+                        {% else %}
+                        <p>No image available.</p>
+                        {% endif %}
+                        {% endwith %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <h6 class="card-title">{{ product.category }}</h6>
+                            <p class="card-text overflow-auto" style="height: 60px;">{{ product.description }}</p>
+                            <a href="{{ product.link }}"
+                               class="btn btn-secondary mt-auto d-inline-block text-center">View</a>
+                            <button type="button" class="btn btn-secondary">${{product.price}}</button>
+                            <button type="button" class="btn btn-secondary">Stock: {{product.stock}}</button>
+                        </div>
+                    </div>
+
+                    {% if forloop.counter|divisibleby:2 or forloop.last %}
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endblock content %}
+</div>
+<script src="{% static 'bmqa1/js/jquery.js' %}"></script>
+<script src="{% static 'bmqa1/js/popper.js' %}"></script>
+<script src="{% static 'bmqa1/js/bootstrap.js' %}"></script>
+
+{% block script %}
+<script>
+    function clearFilters() {
+        const filterForm = document.getElementById('filterForm');
+        // Reset all checkboxes
+        const filterFormCheckboxes = filterForm.querySelectorAll('input[type="checkbox"]');
+        filterFormCheckboxes.forEach(checkbox => checkbox.checked = false);
+
+        // Submit the form with no checked filters (to reset the URL)
+        document.getElementById('filterForm').submit();
+    }
+</script>
+{% endblock script %}
+
+</body>
+</html>

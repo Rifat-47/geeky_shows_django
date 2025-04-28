@@ -5,9 +5,8 @@ from .forms import StudentRegistration
 from django.db.models import Max
 # Create your views here.
 
-def studentinfo(request):
-    stud = Student.objects.all()
-    # print('Myoutput', stud)
+def studentdetails(request):
+    stud = Student.objects.all().values()
     return render(request, 'enroll/studetails.html', {'stu': stud})
 
 
@@ -26,6 +25,13 @@ def showformdata(request):
             name = fm.cleaned_data['name']
             email = fm.cleaned_data['email']
             passs = fm.cleaned_data['passs']
+
+            print('cleaned data: ', name, email, passs)
+            print(type(passs))
+            if passs == True:
+                passs = 'passed'
+            else:
+                passs = 'failed'
 
             # Get the highest stuid in the database
             max_stuid = Student.objects.aggregate(Max('stuid'))['stuid__max']

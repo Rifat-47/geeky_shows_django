@@ -39,8 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app1',
     'enroll',
-    'enroll2_modelform'
-
+    # 'enroll2_modelform'
 ]
 
 MIDDLEWARE = [

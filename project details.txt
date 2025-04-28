@@ -5,4 +5,10 @@ enroll - static files, works about form and model
 GS_New2 => 
 enroll - works about modelform
 
+GS_New3 =>
+enroll => modelform inheritance
+
+PRAC1 => query using python api, foreign key, many to many relation
+
+Authentication => registration and login using django forms & django authenticate
 

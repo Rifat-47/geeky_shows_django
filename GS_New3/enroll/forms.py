@@ -1,6 +1,11 @@
 from django import forms
-from .models import Student
+from .models import User
 class StudentRegistration(forms.ModelForm):
     class Meta:
-        model = Student
-        fields = ['stuname', 'stuemail', 'stupass']
+        model = User
+        fields = ['student_name', 'email', 'password']
+
+
+class TeacherRegistration(StudentRegistration):
+    class Meta(StudentRegistration.Meta):
+        fields = ['teacher_name', 'email', 'password']
